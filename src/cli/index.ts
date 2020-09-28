@@ -1,12 +1,12 @@
 import {red} from 'chalk';
 import {Command} from 'commander';
-import {SheetbaseAppscriptsModule} from '../public-api';
 
+import {Lib as AppscriptsModule} from '../lib/index';
 import {BuildCommand} from './commands/build.command';
 import {PushCommand} from './commands/push.command';
 
 export class Cli {
-  private sheetbaseAppscriptsModule: SheetbaseAppscriptsModule;
+  private appscriptsModule: AppscriptsModule;
 
   buildCommand: BuildCommand;
   pushCommand: PushCommand;
@@ -26,17 +26,17 @@ export class Cli {
   ];
 
   constructor() {
-    this.sheetbaseAppscriptsModule = new SheetbaseAppscriptsModule();
+    this.appscriptsModule = new AppscriptsModule();
     this.buildCommand = new BuildCommand(
-      this.sheetbaseAppscriptsModule.fileService,
-      this.sheetbaseAppscriptsModule.messageService,
-      this.sheetbaseAppscriptsModule.projectService,
-      this.sheetbaseAppscriptsModule.rollupService
+      this.appscriptsModule.fileService,
+      this.appscriptsModule.messageService,
+      this.appscriptsModule.projectService,
+      this.appscriptsModule.rollupService
     );
     this.pushCommand = new PushCommand(
-      this.sheetbaseAppscriptsModule.fileService,
-      this.sheetbaseAppscriptsModule.messageService,
-      this.sheetbaseAppscriptsModule.projectService
+      this.appscriptsModule.fileService,
+      this.appscriptsModule.messageService,
+      this.appscriptsModule.projectService
     );
   }
 

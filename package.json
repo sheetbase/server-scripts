@@ -1,6 +1,6 @@
 {
   "name": "@sheetbase/app-scripts",
-  "version": "3.0.0-beta1",
+  "version": "3.0.0",
   "description": "Scripts for Sheetbase backend modules and apps.",
   "author": "Sheetbase",
   "homepage": "https://sheetbase.dev",
@@ -18,9 +18,9 @@
   ],
   "scripts": {
     "compile": "tsc",
-    "build": "npm.cmd run compile && npm.cmd i -g",
+    "build": "npm run compile && npm i -g",
     "docs": "ayedocs generate",
-    "test": "npm.cmd run compile && nyc --cache false mocha test/**/*.js",
+    "test": "npm run compile && nyc --cache false mocha test/**/*.js",
     "coverage": "nyc --cache false report --reporter=text-lcov | coveralls",
     "check": "gts check",
     "fix": "gts fix"
@@ -48,7 +48,6 @@
     "rollup-plugin-node-resolve": "^5.2.0"
   },
   "devDependencies": {
-    "@lamnhan/testea": "^1.0.0-beta3",
     "@types/chai": "^4.2.12",
     "@types/fs-extra": "^9.0.1",
     "@types/mocha": "^8.0.3",

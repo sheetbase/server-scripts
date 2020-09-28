@@ -1,13 +1,12 @@
 import {execSync} from 'child_process';
 
+import {FileService} from '../../lib/services/file.service';
 import {
   ProjectConfigs,
-  OutputOptions,
-  FileService,
   ProjectService,
-  MessageService,
-  RollupService,
-} from '../../public-api';
+} from '../../lib/services/project.service';
+import {MessageService} from '../../lib/services/message.service';
+import {OutputOptions, RollupService} from '../../lib/services/rollup.service';
 
 export class BuildCommand {
   constructor(

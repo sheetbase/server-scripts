@@ -2,7 +2,9 @@ import {pathExists} from 'fs-extra';
 import {resolve} from 'path';
 import {execSync} from 'child_process';
 
-import {ProjectService, MessageService, FileService} from '../../public-api';
+import {ProjectService} from '../../lib/services/project.service';
+import {MessageService} from '../../lib/services/message.service';
+import {FileService} from '../../lib/services/file.service';
 
 export interface PushOptions {
   copy?: string;
