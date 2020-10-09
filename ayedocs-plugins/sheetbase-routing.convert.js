@@ -178,7 +178,7 @@ module.exports = iifeName => {
     );
     children.forEach(routeDeclaration => {
       const fileContent = fs.readFileSync(
-        './src/' + routeDeclaration.FILE_NAME,
+        (routeDeclaration.FILE_NAME.indexOf('src/') === -1 ? './src/' : './') + routeDeclaration.FILE_NAME,
         {encoding: 'utf8'}
       );
       // extract endpoint and baseEndpoint
