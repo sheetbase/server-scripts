@@ -1,4 +1,4 @@
-import {rollup, OutputOptions} from 'rollup';
+import {rollup, OutputOptions, Plugin} from 'rollup';
 import * as resolve from 'rollup-plugin-node-resolve';
 import * as commonjs from 'rollup-plugin-commonjs';
 
@@ -28,8 +28,8 @@ export class RollupService {
     const bundle = await rollup({
       input,
       plugins: [
-        (resolve as any)(resolveConfigs),
-        (commonjs as any)(commonjsConfigs),
+        ((resolve as unknown) as (cfg: unknown) => Plugin)(resolveConfigs),
+        ((commonjs as unknown) as (cfg: unknown) => Plugin)(commonjsConfigs),
       ],
     });
     for (const output of outputs) {

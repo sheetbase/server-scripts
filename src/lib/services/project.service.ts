@@ -36,6 +36,7 @@ export interface ProjectConfigs {
   inputPath: string;
   iifePath: string;
   iifeName: string;
+  tsconfigPath: string;
 }
 
 export class ProjectService {
@@ -52,6 +53,7 @@ export class ProjectService {
     const inputPath = type === 'app' ? './src/www.js' : './src/public-api.js';
     const iifePath = `./src/sheetbase-${type}.js`;
     const iifeName = type === 'app' ? 'App' : 'Module';
+    const tsconfigPath = './tsconfig-sheetbase.json';
     return {
       type,
       name,
@@ -59,6 +61,7 @@ export class ProjectService {
       inputPath,
       iifePath,
       iifeName,
+      tsconfigPath,
     };
   }
 

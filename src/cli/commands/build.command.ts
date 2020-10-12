@@ -1,4 +1,5 @@
 import {execSync} from 'child_process';
+import {outputJson, remove} from 'fs-extra';
 
 import {FileService} from '../../lib/services/file.service';
 import {
@@ -18,9 +19,9 @@ export class BuildCommand {
 
   async run() {
     const projectConfigs = await this.projectService.getConfigs();
-    const {type, iifePath} = projectConfigs;
+    const {type, iifePath, tsconfigPath} = projectConfigs;
     // compile
-    this.compileCode();
+    await this.compileCode(tsconfigPath);
     // bundle
     await this.bundleCode(projectConfigs);
     // specific for app
@@ -38,8 +39,21 @@ export class BuildCommand {
     );
   }
 
-  private compileCode() {
-    return execSync('npx tsc', {stdio: 'ignore'});
+  private async compileCode(tsconfigPath: string) {
+    // save temp tsconfig
+    await outputJson(tsconfigPath, {
+      extends: './node_modules/gts/tsconfig-google.json',
+      compilerOptions: {
+        module: 'ESNext',
+        rootDir: '.',
+        skipLibCheck: true,
+      },
+      include: ['src/**/*.ts'],
+    });
+    // compile
+    execSync('npx tsc -p ' + tsconfigPath, {stdio: 'ignore'});
+    // remove temp tsconfig
+    await remove(tsconfigPath);
   }
 
   private async bundleCode(configs: ProjectConfigs) {
