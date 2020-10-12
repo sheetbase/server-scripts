@@ -44,6 +44,7 @@ export class BuildCommand {
     await outputJson(tsconfigPath, {
       extends: './node_modules/gts/tsconfig-google.json',
       compilerOptions: {
+        moduleResolution: 'Node',
         module: 'ESNext',
         rootDir: '.',
         skipLibCheck: true,
