@@ -51,7 +51,7 @@ export class ProjectService {
     const name = pkgName.split('/').pop() as string; // ex.: server
     const fullName = pkgName.replace('@', '').replace('/', '-'); //ex.: sheetbase-server
     const inputPath = type === 'app' ? './src/www.js' : './src/public-api.js';
-    const iifePath = `./src/sheetbase-${type}.js`;
+    const iifePath = `./src/${type}.js`;
     const iifeName = type === 'app' ? 'App' : 'Module';
     const tsconfigPath = './tsconfig-sheetbase.json';
     return {
