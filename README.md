@@ -1,17 +1,17 @@
 <section id="head" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
 
-# @sheetbase/app-scripts
+# @sheetbase/server-scripts
 
-**Scripts for Sheetbase backend modules and apps.**
+**Scripts for Sheetbase server modules and apps.**
 
 </section>
 
 <section id="header">
 
-[![Build Status](https://travis-ci.com/sheetbase/app-scripts.svg?branch=master)](https://travis-ci.com/sheetbase/app-scripts) [![Coverage Status](https://coveralls.io/repos/github/sheetbase/app-scripts/badge.svg?branch=master)](https://coveralls.io/github/sheetbase/app-scripts?branch=master) [![NPM](https://img.shields.io/npm/v/@sheetbase/app-scripts.svg)](https://www.npmjs.com/package/@sheetbase/app-scripts) [![License][license_badge]][license_url] [![Support me on Patreon][patreon_badge]][patreon_url] [![PayPal][paypal_donate_badge]][paypal_donate_url] [![Ask me anything][ask_me_badge]][ask_me_url]
+[![Build Status](https://travis-ci.com/sheetbase/server-scripts.svg?branch=master)](https://travis-ci.com/sheetbase/server-scripts) [![Coverage Status](https://coveralls.io/repos/github/sheetbase/server-scripts/badge.svg?branch=master)](https://coveralls.io/github/sheetbase/server-scripts?branch=master) [![NPM](https://img.shields.io/npm/v/@sheetbase/server-scripts.svg)](https://www.npmjs.com/package/@sheetbase/server-scripts) [![License][license_badge]][license_url] [![Support me on Patreon][patreon_badge]][patreon_url] [![PayPal][paypal_donate_badge]][paypal_donate_url] [![Ask me anything][ask_me_badge]][ask_me_url]
 
 [license_badge]: https://img.shields.io/github/license/mashape/apistatus.svg
-[license_url]: https://github.com/sheetbase/app-scripts/blob/master/LICENSE
+[license_url]: https://github.com/sheetbase/server-scripts/blob/master/LICENSE
 [patreon_badge]: https://lamnhan.github.io/assets/images/badges/patreon.svg
 [patreon_url]: https://www.patreon.com/lamnhan
 [paypal_donate_badge]: https://lamnhan.github.io/assets/images/badges/paypal_donate.svg
@@ -35,7 +35,7 @@
   - [`build`](#command-build)
   - [`push`](#command-push)
   - [`help`](#command-help)
-- [Detail API reference](https://sheetbase.github.io/app-scripts)
+- [Detail API reference](https://sheetbase.github.io/server-scripts)
 
 
 </section>
@@ -46,20 +46,20 @@
 
 ### Global
 
-`$ npm install -g @sheetbase/app-scripts`
+`$ npm install -g @sheetbase/server-scripts`
 
-Command: `sheetbase-app-scripts`
+Command: `sheetbase-server-scripts`
 
 ### Local
 
-`$ npm install --save-dev @sheetbase/app-scripts`
+`$ npm install --save-dev @sheetbase/server-scripts`
 
 Add these lines to the project `package.json`.
 
 ```json
 {
   "scripts": {
-    "build": "sheetbase-app-scripts build"
+    "build": "sheetbase-server-scripts build"
   }
 }
 ```
@@ -82,7 +82,7 @@ Included all sections:
 - Routing
 
 ```js
-const sheetbaseTemplate = require("@sheetbase/app-scripts/ayedocs-plugins/sheetbase.template");
+const sheetbaseTemplate = require("@sheetbase/server-scripts/ayedocs-plugins/sheetbase.template");
 
 module.exports = {
   fileRender: {
@@ -97,7 +97,7 @@ module.exports = {
 Common installation & basic usage section.
 
 ```js
-const sheetbaseInstallationTemplate = require("@sheetbase/app-scripts/ayedocs-plugins/sheetbase-installation.template");
+const sheetbaseInstallationTemplate = require("@sheetbase/server-scripts/ayedocs-plugins/sheetbase-installation.template");
 
 module.exports = {
   fileRender: {
@@ -112,7 +112,7 @@ module.exports = {
 Showing **endpoint**, **default disabled routes**, **routing errors** and **the list of routes**.
 
 ```js
-const sheetbaseRoutingTemplate = require("@sheetbase/app-scripts/ayedocs-plugins/sheetbase-routing.template");
+const sheetbaseRoutingTemplate = require("@sheetbase/server-scripts/ayedocs-plugins/sheetbase-routing.template");
 
 module.exports = {
   fileRender: {
@@ -129,11 +129,11 @@ module.exports = {
 <h2><a name="command-overview"><p>Command overview</p>
 </a></h2>
 
-Scripts for Sheetbase backend modules and apps.
+Scripts for Sheetbase server modules and apps.
 
-- [`sheetbase-app-scripts build`](#command-build)
-- [`sheetbase-app-scripts push --copy [value] --vendor [value]`](#command-push)
-- [`sheetbase-app-scripts help`](#command-help)
+- [`sheetbase-server-scripts build`](#command-build)
+- [`sheetbase-server-scripts push --copy [value] --vendor [value]`](#command-push)
+- [`sheetbase-server-scripts help`](#command-help)
 
 <h2><a name="command-reference"><p>Command reference</p>
 </a></h2>
@@ -164,7 +164,7 @@ Display help.
 
 ## License
 
-**@sheetbase/app-scripts** is released under the [MIT](https://github.com/sheetbase/app-scripts/blob/master/LICENSE) license.
+**@sheetbase/server-scripts** is released under the [MIT](https://github.com/sheetbase/server-scripts/blob/master/LICENSE) license.
 
 </section>
 

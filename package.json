@@ -1,14 +1,14 @@
 {
-  "name": "@sheetbase/app-scripts",
-  "version": "3.0.4",
-  "description": "Scripts for Sheetbase backend modules and apps.",
+  "name": "@sheetbase/server-scripts",
+  "version": "3.0.5",
+  "description": "Scripts for Sheetbase server modules and apps.",
   "author": "Sheetbase",
   "homepage": "https://sheetbase.dev",
   "license": "MIT",
   "main": "src/public-api.js",
   "types": "src/public-api.d.ts",
   "bin": {
-    "sheetbase-app-scripts": "src/bin.js"
+    "sheetbase-server-scripts": "src/bin.js"
   },
   "files": [
     "src",
@@ -32,10 +32,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/sheetbase/app-scripts.git"
+    "url": "https://github.com/sheetbase/server-scripts.git"
   },
   "bugs": {
-    "url": "https://github.com/sheetbase/app-scripts/issues"
+    "url": "https://github.com/sheetbase/server-scripts/issues"
   },
   "dependencies": {
     "chalk": "^4.1.0",

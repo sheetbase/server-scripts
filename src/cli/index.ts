@@ -12,8 +12,8 @@ export class Cli {
   pushCommand: PushCommand;
 
   commander = [
-    'sheetbase-app-scripts',
-    'Scripts for Sheetbase backend modules and apps.',
+    'sheetbase-server-scripts',
+    'Scripts for Sheetbase server modules and apps.',
   ];
 
   buildCommandDef: CommandDef = ['build', 'Build distribution package.'];
