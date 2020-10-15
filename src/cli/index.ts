@@ -46,7 +46,6 @@ export class Cli {
     // general
     const [command, description] = this.commander;
     commander
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
       .version(require('../../package.json').version, '-v, --version')
       .name(`${command}`)
       .usage('[options] [command]')
