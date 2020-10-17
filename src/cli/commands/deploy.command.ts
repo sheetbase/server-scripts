@@ -22,9 +22,9 @@ export class DeployCommand {
 
   async run(cmdOpts: DeployOptions) {
     const options = await this.optionService.getOptions();
-    // copy resource to /.deploy
+    // staging
     await this.staging(options, cmdOpts);
-    // publish
+    // deploy
     if (!cmdOpts.dryRun) {
       this.push();
       await this.cleanup(options.deployDir);

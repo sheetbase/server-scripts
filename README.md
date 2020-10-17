@@ -33,7 +33,7 @@
 - [Command overview](#command-overview)
 - [Command reference](#command-reference)
   - [`build`](#command-build)
-  - [`push`](#command-push)
+  - [`deploy`](#command-deploy)
   - [`help`](#command-help)
 - [Detail API reference](https://sheetbase.github.io/server-scripts)
 
@@ -132,7 +132,7 @@ module.exports = {
 Scripts for Sheetbase server modules and apps.
 
 - [`sheetbase-server-scripts build`](#command-build)
-- [`sheetbase-server-scripts push --copy [value] --vendor [value]`](#command-push)
+- [`sheetbase-server-scripts deploy --dry-run --copy [value] --vendor [value]`](#command-deploy)
 - [`sheetbase-server-scripts help`](#command-help)
 
 <h2><a name="command-reference"><p>Command reference</p>
@@ -143,13 +143,14 @@ Scripts for Sheetbase server modules and apps.
 
 Build distribution package.
 
-<h3><a name="command-push"><p><code>push</code></p>
+<h3><a name="command-deploy"><p><code>deploy</code></p>
 </a></h3>
 
 Push to the Apps Script server.
 
 **Options**
 
+- `-d, --dry-run`: Staging only.
 - `--copy [value]`: Copied resources, comma-seperated.
 - `--vendor [value]`: Files for @vendor.js, comma-seperated.
 

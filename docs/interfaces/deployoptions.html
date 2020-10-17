@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PushOptions | @sheetbase/server-scripts</title>
+	<title>DeployOptions | @sheetbase/server-scripts</title>
 	<meta name="description" content="Documentation for @sheetbase/server-scripts">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="pushoptions.html">PushOptions</a>
+					<a href="deployoptions.html">DeployOptions</a>
 				</li>
 			</ul>
-			<h1>Interface PushOptions</h1>
+			<h1>Interface DeployOptions</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">PushOptions</span>
+						<span class="target">DeployOptions</span>
 					</li>
 				</ul>
 			</section>
@@ -79,8 +79,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="pushoptions.html#copy" class="tsd-kind-icon">copy</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="pushoptions.html#vendor" class="tsd-kind-icon">vendor</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="deployoptions.html#copy" class="tsd-kind-icon">copy</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="deployoptions.html#dryrun" class="tsd-kind-icon">dry<wbr>Run</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="deployoptions.html#vendor" class="tsd-kind-icon">vendor</a></li>
 							</ul>
 						</section>
 					</div>
@@ -94,7 +95,17 @@
 					<div class="tsd-signature tsd-kind-icon">copy<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/sheetbase/server-scripts/blob/24ef2ce/src/cli/commands/push.command.ts#L10">cli/commands/push.command.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/sheetbase/server-scripts/blob/a5e6f3e/src/cli/commands/deploy.command.ts#L10">cli/commands/deploy.command.ts:10</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="dryrun" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> dry<wbr>Run</h3>
+					<div class="tsd-signature tsd-kind-icon">dry<wbr>Run<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/sheetbase/server-scripts/blob/a5e6f3e/src/cli/commands/deploy.command.ts#L12">cli/commands/deploy.command.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -104,7 +115,7 @@
 					<div class="tsd-signature tsd-kind-icon">vendor<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/sheetbase/server-scripts/blob/24ef2ce/src/cli/commands/push.command.ts#L11">cli/commands/push.command.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/sheetbase/server-scripts/blob/a5e6f3e/src/cli/commands/deploy.command.ts#L11">cli/commands/deploy.command.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -127,6 +138,9 @@
 						<a href="../classes/cli.html" class="tsd-kind-icon">Cli</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="../classes/deploycommand.html" class="tsd-kind-icon">Deploy<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="../classes/fileservice.html" class="tsd-kind-icon">File<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -136,35 +150,35 @@
 						<a href="../classes/messageservice.html" class="tsd-kind-icon">Message<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="../classes/projectservice.html" class="tsd-kind-icon">Project<wbr>Service</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/pushcommand.html" class="tsd-kind-icon">Push<wbr>Command</a>
+						<a href="../classes/optionservice.html" class="tsd-kind-icon">Option<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="../classes/rollupservice.html" class="tsd-kind-icon">Rollup<wbr>Service</a>
 					</li>
-					<li class=" tsd-kind-interface">
-						<a href="packagejson.html" class="tsd-kind-icon">Package<wbr>Json</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="projectconfigs.html" class="tsd-kind-icon">Project<wbr>Configs</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="pushoptions.html" class="tsd-kind-icon">Push<wbr>Options</a>
+						<a href="deployoptions.html" class="tsd-kind-icon">Deploy<wbr>Options</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="pushoptions.html#copy" class="tsd-kind-icon">copy</a>
+								<a href="deployoptions.html#copy" class="tsd-kind-icon">copy</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="pushoptions.html#vendor" class="tsd-kind-icon">vendor</a>
+								<a href="deployoptions.html#dryrun" class="tsd-kind-icon">dry<wbr>Run</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="deployoptions.html#vendor" class="tsd-kind-icon">vendor</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface">
+						<a href="options.html" class="tsd-kind-icon">Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="packagejson.html" class="tsd-kind-icon">Package<wbr>Json</a>
+					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#commanddef" class="tsd-kind-icon">Command<wbr>Def</a>
 					</li>

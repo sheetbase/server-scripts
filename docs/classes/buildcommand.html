@@ -97,28 +97,22 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Build<wbr>Command<span class="tsd-signature-symbol">(</span>fileService<span class="tsd-signature-symbol">: </span><a href="fileservice.html" class="tsd-signature-type">FileService</a>, messageService<span class="tsd-signature-symbol">: </span><a href="messageservice.html" class="tsd-signature-type">MessageService</a>, projectService<span class="tsd-signature-symbol">: </span><a href="projectservice.html" class="tsd-signature-type">ProjectService</a>, rollupService<span class="tsd-signature-symbol">: </span><a href="rollupservice.html" class="tsd-signature-type">RollupService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="buildcommand.html" class="tsd-signature-type">BuildCommand</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Build<wbr>Command<span class="tsd-signature-symbol">(</span>optionService<span class="tsd-signature-symbol">: </span><a href="optionservice.html" class="tsd-signature-type">OptionService</a>, messageService<span class="tsd-signature-symbol">: </span><a href="messageservice.html" class="tsd-signature-type">MessageService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="buildcommand.html" class="tsd-signature-type">BuildCommand</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/sheetbase/server-scripts/blob/24ef2ce/src/cli/commands/build.command.ts#L12">cli/commands/build.command.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/sheetbase/server-scripts/blob/a5e6f3e/src/cli/commands/build.command.ts#L7">cli/commands/build.command.ts:7</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>fileService: <a href="fileservice.html" class="tsd-signature-type">FileService</a></h5>
+									<h5>optionService: <a href="optionservice.html" class="tsd-signature-type">OptionService</a></h5>
 								</li>
 								<li>
 									<h5>messageService: <a href="messageservice.html" class="tsd-signature-type">MessageService</a></h5>
-								</li>
-								<li>
-									<h5>projectService: <a href="projectservice.html" class="tsd-signature-type">ProjectService</a></h5>
-								</li>
-								<li>
-									<h5>rollupService: <a href="rollupservice.html" class="tsd-signature-type">RollupService</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="buildcommand.html" class="tsd-signature-type">BuildCommand</a></h4>
@@ -138,7 +132,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/sheetbase/server-scripts/blob/24ef2ce/src/cli/commands/build.command.ts#L20">cli/commands/build.command.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/sheetbase/server-scripts/blob/a5e6f3e/src/cli/commands/build.command.ts#L13">cli/commands/build.command.ts:13</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -176,6 +170,9 @@
 						<a href="cli.html" class="tsd-kind-icon">Cli</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="deploycommand.html" class="tsd-kind-icon">Deploy<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="fileservice.html" class="tsd-kind-icon">File<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -185,22 +182,19 @@
 						<a href="messageservice.html" class="tsd-kind-icon">Message<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="projectservice.html" class="tsd-kind-icon">Project<wbr>Service</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="pushcommand.html" class="tsd-kind-icon">Push<wbr>Command</a>
+						<a href="optionservice.html" class="tsd-kind-icon">Option<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="rollupservice.html" class="tsd-kind-icon">Rollup<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="../interfaces/deployoptions.html" class="tsd-kind-icon">Deploy<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/options.html" class="tsd-kind-icon">Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="../interfaces/packagejson.html" class="tsd-kind-icon">Package<wbr>Json</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/projectconfigs.html" class="tsd-kind-icon">Project<wbr>Configs</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/pushoptions.html" class="tsd-kind-icon">Push<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#commanddef" class="tsd-kind-icon">Command<wbr>Def</a>
