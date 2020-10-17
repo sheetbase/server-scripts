@@ -3,13 +3,13 @@ import {Command} from 'commander';
 
 import {Lib as AppscriptsModule} from '../lib/index';
 import {BuildCommand} from './commands/build.command';
-import {PushCommand} from './commands/push.command';
+import {DeployCommand} from './commands/deploy.command';
 
 export class Cli {
   private appscriptsModule: AppscriptsModule;
 
   buildCommand: BuildCommand;
-  pushCommand: PushCommand;
+  deployCommand: DeployCommand;
 
   commander = [
     'sheetbase-server-scripts',
@@ -18,8 +18,8 @@ export class Cli {
 
   buildCommandDef: CommandDef = ['build', 'Build distribution package.'];
 
-  pushCommandDef: CommandDef = [
-    'push',
+  deployCommandDef: CommandDef = [
+    'deploy',
     'Push to the Apps Script server.',
     ['-d, --dry-run', 'Staging only.'],
     ['--copy [value]', 'Copied resources, comma-seperated.'],
@@ -32,7 +32,7 @@ export class Cli {
       this.appscriptsModule.optionService,
       this.appscriptsModule.messageService
     );
-    this.pushCommand = new PushCommand(
+    this.deployCommand = new DeployCommand(
       this.appscriptsModule.fileService,
       this.appscriptsModule.optionService,
       this.appscriptsModule.messageService,
@@ -60,7 +60,7 @@ export class Cli {
         .action(() => this.buildCommand.run());
     })();
 
-    // push
+    // deploy
     (() => {
       const [
         command,
@@ -68,14 +68,14 @@ export class Cli {
         dryRunOpt,
         copyOpt,
         vendorOpt,
-      ] = this.pushCommandDef;
+      ] = this.deployCommandDef;
       commander
         .command(command)
         .description(description)
         .option(...dryRunOpt) // -d, --dry-run
         .option(...copyOpt) // --copy
         .option(...vendorOpt) // --vendor
-        .action(options => this.pushCommand.run(options));
+        .action(options => this.deployCommand.run(options));
     })();
 
     // help

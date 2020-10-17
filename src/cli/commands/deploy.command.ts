@@ -6,13 +6,13 @@ import {MessageService} from '../../lib/services/message.service';
 import {OptionService, Options} from '../../lib/services/option.service';
 import {RollupService, OutputOptions} from '../../lib/services/rollup.service';
 
-export interface PushOptions {
+export interface DeployOptions {
   copy?: string;
   vendor?: string;
   dryRun?: boolean;
 }
 
-export class PushCommand {
+export class DeployCommand {
   constructor(
     private fileService: FileService,
     private optionService: OptionService,
@@ -20,20 +20,20 @@ export class PushCommand {
     private rollupService: RollupService
   ) {}
 
-  async run(cmdOpts: PushOptions) {
+  async run(cmdOpts: DeployOptions) {
     const options = await this.optionService.getOptions();
     // copy resource to /.deploy
     await this.staging(options, cmdOpts);
     // publish
     if (!cmdOpts.dryRun) {
-      this.pushing();
+      this.push();
       await this.cleanup(options.deployDir);
     } else {
       return this.messageService.logOk('Deploy content saved.');
     }
   }
 
-  private async staging(options: Options, cmdOpts: PushOptions) {
+  private async staging(options: Options, cmdOpts: DeployOptions) {
     const {copy = '', vendor = ''} = cmdOpts;
     // bundle
     await this.bundleCode(options);
@@ -43,7 +43,7 @@ export class PushCommand {
     await this.saveVendor(vendor, options.deployDir);
   }
 
-  private pushing() {
+  private push() {
     return execSync('clasp push', {stdio: 'inherit'});
   }
 

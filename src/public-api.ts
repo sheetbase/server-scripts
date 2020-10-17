@@ -7,4 +7,4 @@ export * from './lib/services/message.service';
 export * from './lib/services/rollup.service';
 
 export * from './cli/commands/build.command';
-export * from './cli/commands/push.command';
+export * from './cli/commands/deploy.command';
