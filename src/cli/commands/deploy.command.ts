@@ -7,9 +7,9 @@ import {OptionService, Options} from '../../lib/services/option.service';
 import {RollupService, OutputOptions} from '../../lib/services/rollup.service';
 
 export interface DeployOptions {
+  dryRun?: boolean;
   copy?: string;
   vendor?: string;
-  dryRun?: boolean;
 }
 
 export class DeployCommand {
@@ -34,13 +34,14 @@ export class DeployCommand {
   }
 
   private async staging(options: Options, cmdOpts: DeployOptions) {
+    const {deployDir} = options;
     const {copy = '', vendor = ''} = cmdOpts;
     // bundle
     await this.bundleCode(options);
     // copy
-    await this.copyResources(copy, options.deployDir);
+    await this.copyResources(deployDir, copy);
     // vendor
-    await this.saveVendor(vendor, options.deployDir);
+    await this.saveVendor(deployDir, vendor);
   }
 
   private push() {
@@ -74,7 +75,7 @@ export class DeployCommand {
     }
   }
 
-  private async copyResources(input: string, deployDir: string) {
+  private async copyResources(deployDir: string, input: string) {
     const copies = ['appsscript.json', 'src/views'];
     // extract copied path
     (input || '')
@@ -84,7 +85,7 @@ export class DeployCommand {
     return this.fileService.copy(copies, deployDir);
   }
 
-  private async saveVendor(input: string, deployDir: string) {
+  private async saveVendor(deployDir: string, input: string) {
     // extract vendor paths
     const vendors: string[] = [];
     (input || '')
