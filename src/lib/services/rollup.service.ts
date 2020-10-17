@@ -2,17 +2,17 @@ import {rollup, OutputOptions, Plugin} from 'rollup';
 import * as resolve from 'rollup-plugin-node-resolve';
 import * as commonjs from 'rollup-plugin-commonjs';
 
-import {ProjectService} from './project.service';
+import {OptionService} from './option.service';
 
 export {OutputOptions};
 
 export class RollupService {
-  constructor(private projectService: ProjectService) {}
+  constructor(private optionService: OptionService) {}
 
   async getConfigs() {
     const {
       rollup: rollupConfigs = {},
-    } = await this.projectService.getPackageJson();
+    } = await this.optionService.getPackageJson();
     const {
       resolve: resolveConfigs = {},
       commonjs: commonjsConfigs = {},

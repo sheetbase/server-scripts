@@ -29,7 +29,7 @@ export interface PackageJson {
   };
 }
 
-export interface ProjectConfigs {
+export interface Options {
   deployDir: string;
   type: 'app' | 'module';
   name: string;
@@ -40,10 +40,10 @@ export interface ProjectConfigs {
   tsconfigPath: string;
 }
 
-export class ProjectService {
+export class OptionService {
   constructor(private fileService: FileService) {}
 
-  async getConfigs(): Promise<ProjectConfigs> {
+  async getOptions(): Promise<Options> {
     const {name: pkgName} = await this.getPackageJson();
     const deployDir = '.deploy';
     const type =

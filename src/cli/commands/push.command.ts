@@ -3,10 +3,7 @@ import {execSync} from 'child_process';
 
 import {FileService} from '../../lib/services/file.service';
 import {MessageService} from '../../lib/services/message.service';
-import {
-  ProjectService,
-  ProjectConfigs,
-} from '../../lib/services/project.service';
+import {OptionService, Options} from '../../lib/services/option.service';
 import {RollupService, OutputOptions} from '../../lib/services/rollup.service';
 
 export interface PushOptions {
@@ -18,32 +15,32 @@ export interface PushOptions {
 export class PushCommand {
   constructor(
     private fileService: FileService,
+    private optionService: OptionService,
     private messageService: MessageService,
-    private projectService: ProjectService,
     private rollupService: RollupService
   ) {}
 
   async run(cmdOpts: PushOptions) {
-    const configs = await this.projectService.getConfigs();
+    const options = await this.optionService.getOptions();
     // copy resource to /.deploy
-    await this.staging(configs, cmdOpts);
+    await this.staging(options, cmdOpts);
     // publish
     if (!cmdOpts.dryRun) {
       this.pushing();
-      await this.cleanup(configs.deployDir);
+      await this.cleanup(options.deployDir);
     } else {
       return this.messageService.logOk('Deploy content saved.');
     }
   }
 
-  private async staging(configs: ProjectConfigs, cmdOpts: PushOptions) {
+  private async staging(options: Options, cmdOpts: PushOptions) {
     const {copy = '', vendor = ''} = cmdOpts;
     // bundle
-    await this.bundleCode(configs);
+    await this.bundleCode(options);
     // copy
-    await this.copyResources(copy, configs.deployDir);
+    await this.copyResources(copy, options.deployDir);
     // vendor
-    await this.saveVendor(vendor, configs.deployDir);
+    await this.saveVendor(vendor, options.deployDir);
   }
 
   private pushing() {
@@ -54,8 +51,8 @@ export class PushCommand {
     return this.fileService.remove(deployDir);
   }
 
-  private async bundleCode(configs: ProjectConfigs) {
-    const {type, inputPath, iifePath, iifeName} = configs;
+  private async bundleCode(options: Options) {
+    const {type, inputPath, iifePath, iifeName} = options;
     // bundle
     const output: OutputOptions[] = [
       {

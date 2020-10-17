@@ -29,13 +29,13 @@ export class Cli {
   constructor() {
     this.appscriptsModule = new AppscriptsModule();
     this.buildCommand = new BuildCommand(
-      this.appscriptsModule.messageService,
-      this.appscriptsModule.projectService
+      this.appscriptsModule.optionService,
+      this.appscriptsModule.messageService
     );
     this.pushCommand = new PushCommand(
       this.appscriptsModule.fileService,
+      this.appscriptsModule.optionService,
       this.appscriptsModule.messageService,
-      this.appscriptsModule.projectService,
       this.appscriptsModule.rollupService
     );
   }

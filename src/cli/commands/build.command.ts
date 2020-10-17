@@ -1,17 +1,17 @@
 import {execSync} from 'child_process';
 import {outputJson, remove} from 'fs-extra';
 
-import {ProjectService} from '../../lib/services/project.service';
+import {OptionService} from '../../lib/services/option.service';
 import {MessageService} from '../../lib/services/message.service';
 
 export class BuildCommand {
   constructor(
-    private messageService: MessageService,
-    private projectService: ProjectService
+    private optionService: OptionService,
+    private messageService: MessageService
   ) {}
 
   async run() {
-    const {type, tsconfigPath} = await this.projectService.getConfigs();
+    const {type, tsconfigPath} = await this.optionService.getOptions();
     // compile
     await this.compileCode(tsconfigPath);
     // done
