@@ -1,75 +1,93 @@
-import {pathExists} from 'fs-extra';
 import {resolve} from 'path';
 import {execSync} from 'child_process';
 
-import {ProjectService} from '../../lib/services/project.service';
-import {MessageService} from '../../lib/services/message.service';
 import {FileService} from '../../lib/services/file.service';
+import {MessageService} from '../../lib/services/message.service';
+import {
+  ProjectService,
+  ProjectConfigs,
+} from '../../lib/services/project.service';
+import {RollupService, OutputOptions} from '../../lib/services/rollup.service';
 
 export interface PushOptions {
   copy?: string;
   vendor?: string;
+  dryRun?: boolean;
 }
 
 export class PushCommand {
-  DEPLOY_DIR = '.deploy';
-
   constructor(
     private fileService: FileService,
     private messageService: MessageService,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private rollupService: RollupService
   ) {}
 
-  async run(options: PushOptions) {
-    const projectConfigs = await this.projectService.getConfigs();
-    const {iifePath} = projectConfigs;
-    // check if built content available
-    if (!(await pathExists(iifePath))) {
-      return this.messageService.logError(
-        'No resource for pushing, please build first.'
-      );
-    } else {
-      // copy resource to /.deploy
-      await this.staging(iifePath, options);
-      // push using CLASP
+  async run(cmdOpts: PushOptions) {
+    const configs = await this.projectService.getConfigs();
+    // copy resource to /.deploy
+    await this.staging(configs, cmdOpts);
+    // publish
+    if (!cmdOpts.dryRun) {
       this.pushing();
-      // remove /.deploy
-      await this.cleanup();
-      // done
-      return this.messageService.logOk('Resource was pushed.');
+      await this.cleanup(configs.deployDir);
+    } else {
+      return this.messageService.logOk('Deploy content saved.');
     }
   }
 
-  private async staging(iifePath: string, pushOptions: PushOptions) {
-    // copy the main file
-    await this.fileService.copy([iifePath], this.DEPLOY_DIR);
-    // additional options
-    const {copy = '', vendor = ''} = pushOptions;
+  private async staging(configs: ProjectConfigs, cmdOpts: PushOptions) {
+    const {copy = '', vendor = ''} = cmdOpts;
+    // bundle
+    await this.bundleCode(configs);
     // copy
-    await this.copyResources(copy);
+    await this.copyResources(copy, configs.deployDir);
     // vendor
-    await this.saveVendor(vendor);
+    await this.saveVendor(vendor, configs.deployDir);
   }
 
   private pushing() {
     return execSync('clasp push', {stdio: 'inherit'});
   }
 
-  private cleanup() {
-    return this.fileService.remove(this.DEPLOY_DIR);
+  private cleanup(deployDir: string) {
+    return this.fileService.remove(deployDir);
   }
 
-  private async copyResources(input: string) {
+  private async bundleCode(configs: ProjectConfigs) {
+    const {type, inputPath, iifePath, iifeName} = configs;
+    // bundle
+    const output: OutputOptions[] = [
+      {
+        format: 'iife',
+        file: iifePath,
+        name: iifeName,
+        exports: 'named',
+      },
+    ];
+    await this.rollupService.bundleCode(inputPath, output);
+    // specific for app
+    if (type === 'app') {
+      const iifeContent = await this.fileService.readFile(iifePath);
+      const wwwSnippet = [
+        'function doGet(e) { return App.www.get(e); }',
+        'function doPost(e) { return App.www.post(e); }',
+      ].join('\n');
+      this.fileService.outputFile(iifePath, iifeContent + '\n' + wwwSnippet);
+    }
+  }
+
+  private async copyResources(input: string, deployDir: string) {
     const copies = ['appsscript.json', 'src/views'];
     // extract copied path
     (input || '')
       .split(',')
       .forEach(item => !!item.trim() && copies.push(item.trim()));
     // save file
-    return this.fileService.copy(copies, this.DEPLOY_DIR);
+    return this.fileService.copy(copies, deployDir);
   }
 
-  private async saveVendor(input: string) {
+  private async saveVendor(input: string, deployDir: string) {
     // extract vendor paths
     const vendors: string[] = [];
     (input || '')
@@ -88,7 +106,7 @@ export class PushCommand {
       }
       // save file
       return this.fileService.outputFile(
-        resolve(this.DEPLOY_DIR, '@vendor.js'),
+        resolve(deployDir, '@vendor.js'),
         contentArr.join('\n\n')
       );
     }

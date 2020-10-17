@@ -30,6 +30,7 @@ export interface PackageJson {
 }
 
 export interface ProjectConfigs {
+  deployDir: string;
   type: 'app' | 'module';
   name: string;
   fullName: string;
@@ -44,6 +45,7 @@ export class ProjectService {
 
   async getConfigs(): Promise<ProjectConfigs> {
     const {name: pkgName} = await this.getPackageJson();
+    const deployDir = '.deploy';
     const type =
       pkgName === '@sheetbase/backend' || pkgName.indexOf('@app') !== -1
         ? 'app'
@@ -51,10 +53,11 @@ export class ProjectService {
     const name = pkgName.split('/').pop() as string; // ex.: server
     const fullName = pkgName.replace('@', '').replace('/', '-'); //ex.: sheetbase-server
     const inputPath = type === 'app' ? './src/www.js' : './src/public-api.js';
-    const iifePath = `./src/${type}.js`;
+    const iifePath = `./${deployDir}/${type}.js`;
     const iifeName = type === 'app' ? 'App' : 'Module';
-    const tsconfigPath = './tsconfig-sheetbase.json';
+    const tsconfigPath = './tsconfig-deploy.json';
     return {
+      deployDir,
       type,
       name,
       fullName,

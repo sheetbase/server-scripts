@@ -21,6 +21,7 @@ export class Cli {
   pushCommandDef: CommandDef = [
     'push',
     'Push to the Apps Script server.',
+    ['-d, --dry-run', 'Staging only.'],
     ['--copy [value]', 'Copied resources, comma-seperated.'],
     ['--vendor [value]', 'Files for @vendor.js, comma-seperated.'],
   ];
@@ -28,15 +29,14 @@ export class Cli {
   constructor() {
     this.appscriptsModule = new AppscriptsModule();
     this.buildCommand = new BuildCommand(
-      this.appscriptsModule.fileService,
       this.appscriptsModule.messageService,
-      this.appscriptsModule.projectService,
-      this.appscriptsModule.rollupService
+      this.appscriptsModule.projectService
     );
     this.pushCommand = new PushCommand(
       this.appscriptsModule.fileService,
       this.appscriptsModule.messageService,
-      this.appscriptsModule.projectService
+      this.appscriptsModule.projectService,
+      this.appscriptsModule.rollupService
     );
   }
 
@@ -62,10 +62,17 @@ export class Cli {
 
     // push
     (() => {
-      const [command, description, copyOpt, vendorOpt] = this.pushCommandDef;
+      const [
+        command,
+        description,
+        dryRunOpt,
+        copyOpt,
+        vendorOpt,
+      ] = this.pushCommandDef;
       commander
         .command(command)
         .description(description)
+        .option(...dryRunOpt) // -d, --dry-run
         .option(...copyOpt) // --copy
         .option(...vendorOpt) // --vendor
         .action(options => this.pushCommand.run(options));
